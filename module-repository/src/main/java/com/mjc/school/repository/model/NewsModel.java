@@ -51,10 +51,7 @@ public class NewsModel {
         return this;
     }
 
-    public NewsModel setTitle(String title) {
-        this.title = title;
-        return this;
-    }
+
 
     public NewsModel setContent(String content) {
         this.content = content;
@@ -63,16 +60,6 @@ public class NewsModel {
 
     public NewsModel setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
-        return this;
-    }
-
-    public NewsModel setLastUpdateDate(LocalDateTime lastUpdateDate) {
-        this.lastUpdateDate = lastUpdateDate;
-        return this;
-    }
-
-    public NewsModel setAuthor(Author author) {
-        this.author = author;
         return this;
     }
 

@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class TerminalCommandsReader {
 
     private static final String PROMPT_ENTER_NUMBER_OF_OPERATION
-            = "      \n" +
+            = "_____________________________\n" +
             "Enter the number of operation:";
 
     private final Scanner sc = new Scanner(System.in);
