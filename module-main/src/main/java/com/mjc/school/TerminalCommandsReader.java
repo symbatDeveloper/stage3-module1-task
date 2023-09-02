@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class TerminalCommandsReader {
 
     private static final String PROMPT_ENTER_NUMBER_OF_OPERATION
-            = "_____________________________\n" +
+            = "  " +
             "Enter the number of operation:";
 
     private final Scanner sc = new Scanner(System.in);
@@ -16,7 +16,7 @@ public class TerminalCommandsReader {
         if (sc.hasNextLine()) {
             try {
                 int commandCode = Integer.parseInt(sc.nextLine());
-                Command command = getCommandByCode(commandCode);
+                Command command = getCommand(commandCode);
                 return Optional.ofNullable(command);
             } catch (NumberFormatException e) {
                 return Optional.empty();
@@ -25,12 +25,12 @@ public class TerminalCommandsReader {
         return Optional.empty();
     }
 
-    public String requestResponseByPrompt(String prompt) {
+    public String reqResponse(String prompt) {
         System.out.println(prompt);
         return sc.nextLine();
     }
 
-    private Command getCommandByCode(int commandCode) {
+    private Command getCommand(int commandCode) {
         for (Command cmd : Command.values()) {
             if (cmd.code == commandCode)
                 return cmd;
@@ -41,11 +41,11 @@ public class TerminalCommandsReader {
     private void printCommandPrompt() {
         StringBuilder sb = new StringBuilder();
         sb.append(PROMPT_ENTER_NUMBER_OF_OPERATION).append('\n');
-        for (Command cmd : Command.values()) {
+        for (Command command : Command.values()) {
             sb
-                    .append(cmd.code)
+                    .append(command.code)
                     .append(" - ")
-                    .append(cmd.description)
+                    .append(command.description)
                     .append('\n');
         }
         System.out.print(sb);

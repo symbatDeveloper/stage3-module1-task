@@ -59,7 +59,7 @@ public class RepositoryImpl implements Repository<NewsModel> {
         List<NewsModel> newsModelModelList = dataSource.getNewsModelList();
         int indexOfNews = newsModelModelList.indexOf(new NewsModel(id));
         if (indexOfNews == -1) {
-            throw new NewsNotFoundException("News with id %d does not exist."
+            throw new NewsNotFoundException("News nor found"
                     .formatted(id));
         }
         return indexOfNews;
@@ -68,7 +68,7 @@ public class RepositoryImpl implements Repository<NewsModel> {
     private void checkAuthorId(Long id) throws AuthorNotFoundException {
         int indexOfAuthor = dataSource.getAuthorList().indexOf(new Author(id));
         if (indexOfAuthor == -1) {
-            throw new AuthorNotFoundException("Author Id does not exist. Author Id is: %d"
+            throw new AuthorNotFoundException("Author not found: %d"
                     .formatted(id));
         }
     }

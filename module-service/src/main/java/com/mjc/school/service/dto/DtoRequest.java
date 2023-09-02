@@ -7,9 +7,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class NewsUpdateDtoRequest {
-    Long id;
+public class DtoRequest {
     String title;
     String content;
     Long authorId;
+
 }
+

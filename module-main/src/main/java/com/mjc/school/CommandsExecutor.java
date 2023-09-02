@@ -7,9 +7,9 @@ import com.mjc.school.repository.exceptions.AuthorNotFoundException;
 import com.mjc.school.repository.exceptions.NewsNotFoundException;
 import com.mjc.school.service.dto.NewsCreateDtoRequest;
 import com.mjc.school.service.dto.NewsDto;
-import com.mjc.school.service.dto.NewsUpdateDtoRequest;
-import com.mjc.school.service.exceptions.NewsContentInvalidException;
-import com.mjc.school.service.exceptions.NewsTitleInvalidException;
+import com.mjc.school.service.dto.UpdDtoRequest;
+import com.mjc.school.service.exceptions.ContValidException;
+import com.mjc.school.service.exceptions.TvalidException;
 
 public class CommandsExecutor {
 
@@ -19,8 +19,8 @@ public class CommandsExecutor {
 
     public void executeCommand(Command command) throws
             IdShouldBeNumberException, NewsNotFoundException,
-            AuthorNotFoundException, NewsTitleInvalidException,
-            NewsContentInvalidException {
+            AuthorNotFoundException, TvalidException,
+            ContValidException {
 
         if (command == Command.EXIT)
             System.exit(0);
@@ -46,7 +46,7 @@ public class CommandsExecutor {
                             )));
             case UPDATE -> System.out.println(
                     newsController.updateNews(
-                            new NewsUpdateDtoRequest(
+                            new UpdDtoRequest(
                                     requestNewsId(),
                                     requestNewsTitle(),
                                     requestNewsContent(),
@@ -61,7 +61,7 @@ public class CommandsExecutor {
 
     private long requestNewsId() {
         try {
-            return Long.parseLong(commandsReader.requestResponseByPrompt("Enter news id:"));
+            return Long.parseLong(commandsReader.reqResponse("Enter news id:"));
         } catch (NumberFormatException e) {
             throw new IdShouldBeNumberException("News Id should be number", e);
         }
@@ -69,17 +69,17 @@ public class CommandsExecutor {
 
     private long requestAuthorId() {
         try {
-            return Long.parseLong(commandsReader.requestResponseByPrompt("Enter author id:"));
+            return Long.parseLong(commandsReader.reqResponse("Enter author id:"));
         } catch (NumberFormatException e) {
             throw new IdShouldBeNumberException("Author Id should be number", e);
         }
     }
 
     private String requestNewsContent() {
-        return commandsReader.requestResponseByPrompt("Enter news content:");
+        return commandsReader.reqResponse("Enter news content:");
     }
 
     private String requestNewsTitle() {
-        return commandsReader.requestResponseByPrompt("Enter news title:");
+        return commandsReader.reqResponse("Enter news title:");
     }
 }
